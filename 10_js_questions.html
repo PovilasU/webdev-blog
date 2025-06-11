@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Interview Questions and Answers</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+      }
+      h2 {
+        color: #34495e;
+        margin-top: 30px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-left: 4px solid #ccc;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Common JavaScript Interview Questions and Answers</h1>
+
+    <h2>What are the data types in JavaScript?</h2>
+    <pre>
+Primitive types: String, Number, Boolean, Null, Undefined, Symbol, BigInt
+Non-primitive: Object, Array, Function
+  </pre
+    >
+
+    <h2>What is the difference between var, let, and const?</h2>
+    <pre>
+var: Function-scoped, can be redeclared and updated.
+let: Block-scoped, can be updated but not redeclared in the same scope.
+const: Block-scoped, cannot be updated or redeclared.
+  </pre
+    >
+
+    <h2>What is a closure?</h2>
+    <pre>
+A closure is a function that remembers its outer scope even after the outer function has finished executing.
+Example:
+function outer() {
+  let count = 0;
+  return function inner() {
+    return ++count;
+  };
+}
+const counter = outer();
+counter(); // 1
+counter(); // 2
+  </pre
+    >
+
+    <h2>What is the difference between == and ===?</h2>
+    <pre>
+== checks for value equality with type coercion.
+=== checks for both value and type (strict equality).
+  </pre
+    >
+
+    <h2>What is hoisting in JavaScript?</h2>
+    <pre>
+Hoisting is JavaScript's behavior of moving declarations to the top of their scope before execution.
+Only function and variable declarations are hoisted, not initializations.
+  </pre
+    >
+
+    <h2>What is the difference between null and undefined?</h2>
+    <pre>
+null: Intentional absence of value (assigned by developer).
+undefined: Variable declared but not assigned a value (default by JS).
+  </pre
+    >
+
+    <h2>What are arrow functions and how are they different?</h2>
+    <pre>
+Arrow functions are a shorter syntax for writing functions. They don’t bind their own 'this'.
+Example:
+const add = (a, b) => a + b;
+Difference: No 'this', 'arguments', or 'new' binding.
+  </pre
+    >
+
+    <h2>What is event bubbling and event capturing?</h2>
+    <pre>
+Bubbling: Event propagates from child to parent.
+Capturing: Event propagates from parent to child.
+You can control it using addEventListener(event, handler, useCapture).
+  </pre
+    >
+
+    <h2>What is the difference between map(), filter(), and reduce()?</h2>
+    <pre>
+map(): Transforms each element and returns a new array.
+filter(): Returns elements that pass a condition.
+reduce(): Accumulates array values into a single result.
+  </pre
+    >
+
+    <h2>Explain 'this' in JavaScript.</h2>
+    <pre>
+'this' refers to the object from which a function is called. It changes depending on context:
+- In global scope: 'this' is window (in browsers).
+- Inside object method: 'this' refers to the object.
+- In arrow functions: 'this' is lexically inherited.
+  </pre
+    >
+  </body>
+</html>

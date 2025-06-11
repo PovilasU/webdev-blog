@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Clean Blog - Start Bootstrap Theme</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html"
+                >Sample Post</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('assets/img/post-bg.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="post-heading">
+              <h1>Man must explore, and this is exploration at its greatest</h1>
+              <h2 class="subheading">
+                Problems look mighty small from 150 miles up
+              </h2>
+              <span class="meta">
+                Posted by
+                <a href="#!">Start Bootstrap</a>
+                on August 24, 2023
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Post Content-->
+    <article class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Existing post content here (can be preserved above or removed if not needed) -->
+
+            <h2 class="section-heading">Core JavaScript Questions</h2>
+
+            <h4>1. What is the difference between var, let, and const?</h4>
+            <p>
+              <strong>var</strong> is function-scoped and allows re-declaration.
+              <strong>let</strong> and <strong>const</strong> are block-scoped.
+              <strong>const</strong> creates a constant reference that cannot be
+              reassigned, while <strong>let</strong> can be reassigned.
+            </p>
+
+            <h4>2. Explain hoisting in JavaScript.</h4>
+            <p>
+              Hoisting is JavaScript’s default behavior of moving declarations
+              to the top of the current scope. <code>var</code> declarations are
+              hoisted and initialized with <code>undefined</code>.
+              <code>let</code> and <code>const</code> are hoisted but not
+              initialized, leading to a “temporal dead zone.”
+            </p>
+            <p>
+              JavaScripte kintamieji ir funkcijos pirmiausia „pakeliami“ į kodo
+              viršų. var kintamieji tampa undefined, o let ir const neveikia
+              tol, kol nepasiekia savo eilutės – tai vadinama „laikinoji
+              negaliojimo zona“.
+            </p>
+
+            <h4>3. What is the event loop, and how does it work?</h4>
+            <p>
+              The event loop is a mechanism that handles asynchronous
+              operations. It checks the call stack and the task queue. When the
+              call stack is empty, it pushes the next function from the queue to
+              the stack for execution.
+            </p>
+
+            <h4>4. What is the difference between == and ===?</h4>
+            <p>
+              <code>==</code> checks for value equality with type coercion,
+              while <code>===</code> checks for strict equality (value and
+              type).
+            </p>
+
+            <h4>5. Explain closures and give an example.</h4>
+            <p>
+              A closure is a function that has access to its outer function’s
+              scope even after the outer function has returned.
+            </p>
+            <pre><code>function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    return count;
+  }
+}
+const counter = outer();
+console.log(counter()); // 1
+console.log(counter()); // 2</code></pre>
+
+            <h4>6. What are JavaScript data types?</h4>
+            <p>
+              JavaScript has 8 data types: <code>String</code>,
+              <code>Number</code>, <code>BigInt</code>, <code>Boolean</code>,
+              <code>Undefined</code>, <code>Null</code>, <code>Symbol</code>,
+              and <code>Object</code> (which includes arrays and functions).
+            </p>
+
+            <h4>7. What is a promise? How is it different from a callback?</h4>
+            <p>
+              A promise represents the eventual completion (or failure) of an
+              asynchronous operation. Promises avoid “callback hell” by allowing
+              chaining with <code>.then()</code> and <code>.catch()</code>.
+            </p>
+
+            <h4>
+              8. What is the difference between synchronous and asynchronous
+              code?
+            </h4>
+            <p>
+              Synchronous code runs sequentially, blocking the execution of
+              subsequent code. Asynchronous code allows other operations to
+              continue while waiting for a task to complete, e.g., using
+              <code>setTimeout</code> or <code>fetch</code>.
+            </p>
+
+            <h4>9. Explain the concept of scope in JavaScript.</h4>
+            <p>
+              Scope defines the accessibility of variables. JavaScript has
+              global scope, function scope, and block scope (with
+              <code>let</code> and <code>const</code>).
+            </p>
+
+            <h4>10. What is the difference between null and undefined?</h4>
+            <p>
+              <code>undefined</code> means a variable has been declared but not
+              assigned a value. <code>null</code> is an assignment value that
+              represents no value or object.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Footer-->
+    <footer class="border-top">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div class="small text-center text-muted fst-italic">
+              Copyright &copy; Your Website 2023
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
