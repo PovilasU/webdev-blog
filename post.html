@@ -111,9 +111,15 @@ counter(); // 2</code></pre>
               <code>let</code>, and <code>const</code>?
             </h2>
             <p>
-              - <code>var</code> is function-scoped and hoisted. <br />
-              - <code>let</code> is block-scoped and can be updated. <br />
-              - <code>const</code> is block-scoped and cannot be reassigned.
+              - <code>var</code> var is function-scoped, not block-scoped, and
+              can be redeclared and updated. <br />
+              - <code>let</code> is block-scoped, can be updated, but not
+              redeclared in the same scope.
+
+              <br />
+              - <code>const</code> is also block-scoped, and cannot be
+              reassigned or redeclared, but if it's an object or array, the
+              contents can be mutated.
             </p>
             <pre><code>function test() {
   if (true) {

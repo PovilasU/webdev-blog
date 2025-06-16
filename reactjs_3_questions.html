@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Interview Questions</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      h1 {
+        text-align: center;
+        color: #343a40;
+      }
+      .question {
+        background-color: #ffffff;
+        border-left: 4px solid #007bff;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .question h2 {
+        color: #007bff;
+      }
+      pre {
+        background-color: #f1f1f1;
+        padding: 10px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Essential React.js Interview Questions</h1>
+
+    <div class="question">
+      <h2>
+        1. What are the differences between a class component and a functional
+        component?
+      </h2>
+      <p><strong>Answer:</strong></p>
+      <ul>
+        <li>
+          <strong>Class Component:</strong> Uses ES6 class syntax, has lifecycle
+          methods, and can hold state.
+        </li>
+        <li>
+          <strong>Functional Component:</strong> Uses functions, is simpler, and
+          uses hooks like <code>useState</code> and <code>useEffect</code>.
+        </li>
+      </ul>
+      <pre><code>// Functional
+function Hello() {
+  return &lt;h1&gt;Hello&lt;/h1&gt;;
+}
+
+// Class
+class Hello extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello&lt;/h1&gt;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="question">
+      <h2>2. What are React Hooks? Name a few commonly used hooks.</h2>
+      <p><strong>Answer:</strong></p>
+      <p>
+        Hooks are functions that let you use state and other React features in
+        functional components.
+      </p>
+      <ul>
+        <li><code>useState</code> – for state management</li>
+        <li><code>useEffect</code> – for side effects like fetching data</li>
+        <li><code>useContext</code> – to use React context</li>
+        <li><code>useRef</code> – to access DOM elements or store values</li>
+        <li>
+          <code>useMemo</code> / <code>useCallback</code> – for performance
+          optimization
+        </li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <h2>3. How does the virtual DOM work in React?</h2>
+      <p><strong>Answer:</strong></p>
+      <ol>
+        <li>React updates the virtual DOM when state or props change.</li>
+        <li>It compares the new virtual DOM with the old one (diffing).</li>
+        <li>
+          It finds and applies the minimal changes to the real DOM
+          (reconciliation).
+        </li>
+      </ol>
+      <p>This makes React fast and efficient.</p>
+    </div>
+  </body>
+</html>

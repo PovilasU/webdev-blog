@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Interview Prep - Junior Level</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f5f5f5;
+      }
+      pre {
+        background: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      code {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>React Interview Prep - Junior Role</h1>
+
+    <h2>✅ 1. Flashcards</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>What is React?</td>
+          <td>
+            A JavaScript library for building UI with a component-based
+            approach.
+          </td>
+        </tr>
+        <tr>
+          <td>What is JSX?</td>
+          <td>Syntax extension that looks like HTML in JavaScript.</td>
+        </tr>
+        <tr>
+          <td>Props vs State?</td>
+          <td>
+            Props are read-only and passed from parent; state is internal and
+            mutable.
+          </td>
+        </tr>
+        <tr>
+          <td>useState</td>
+          <td>Adds state to a functional component.</td>
+        </tr>
+        <tr>
+          <td>useEffect</td>
+          <td>Handles side effects like data fetching.</td>
+        </tr>
+        <tr>
+          <td>When does useEffect run?</td>
+          <td>After render or when dependencies change.</td>
+        </tr>
+        <tr>
+          <td>What is the virtual DOM?</td>
+          <td>
+            A lightweight copy of the real DOM for performance optimization.
+          </td>
+        </tr>
+        <tr>
+          <td>Functional components?</td>
+          <td>Components written as functions instead of classes.</td>
+        </tr>
+        <tr>
+          <td>Controlled components?</td>
+          <td>Inputs that get their value from state.</td>
+        </tr>
+        <tr>
+          <td>Key in React lists?</td>
+          <td>Unique identifier used to optimize rendering of lists.</td>
+        </tr>
+        <tr>
+          <td>Passing data to child?</td>
+          <td>Use props.</td>
+        </tr>
+        <tr>
+          <td>Child to parent?</td>
+          <td>Call function passed as prop.</td>
+        </tr>
+        <tr>
+          <td>Conditional rendering?</td>
+          <td>Show components based on conditions using if/ternary.</td>
+        </tr>
+        <tr>
+          <td>onClick event?</td>
+          <td>Example: &lt;button onClick={handleClick}&gt;</td>
+        </tr>
+        <tr>
+          <td>Render a list?</td>
+          <td>Use .map() and key for each item.</td>
+        </tr>
+        <tr>
+          <td>React Router?</td>
+          <td>Used for client-side routing.</td>
+        </tr>
+        <tr>
+          <td>Fetching data?</td>
+          <td>Use fetch in useEffect.</td>
+        </tr>
+        <tr>
+          <td>Update state directly?</td>
+          <td>No. Use setState or state updater function.</td>
+        </tr>
+        <tr>
+          <td>What is a hook?</td>
+          <td>
+            Function that lets you use React features in function components.
+          </td>
+        </tr>
+        <tr>
+          <td>useRef?</td>
+          <td>Access DOM nodes or persist values across renders.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>💻 2. Code Challenges</h2>
+    <h3>Challenge 1: Basic Counter</h3>
+    <pre><code>function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() => setCount(count + 1)}&gt;Increase&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+    <h3>Task: Todo List</h3>
+    <ul>
+      <li>Input field</li>
+      <li>Add task on button click</li>
+      <li>Display list</li>
+      <li>Delete individual task</li>
+    </ul>
+
+    <h3>Task: Fetch API Data</h3>
+    <pre><code>useEffect(() => {
+  fetch('https://api.example.com')
+    .then(res => res.json())
+    .then(setData)
+    .catch(err => setError(true));
+}, []);</code></pre>
+
+    <h2>🎤 3. Mock Interview Questions</h2>
+    <h3>Conceptual</h3>
+    <ul>
+      <li>Explain how React updates the UI when state changes.</li>
+      <li>What happens if you call setState in a loop?</li>
+      <li>Why do we need keys in a list?</li>
+    </ul>
+
+    <h3>Practical</h3>
+    <ul>
+      <li>Write a component that fetches a list of users from an API.</li>
+      <li>Build a toggle button that switches between "ON" and "OFF".</li>
+      <li>
+        Debug this component that doesn’t re-render correctly after state
+        update.
+      </li>
+    </ul>
+
+    <h3>Behavioral</h3>
+    <ul>
+      <li>Tell me about a time you debugged a tricky bug.</li>
+      <li>Describe a small project you built with React.</li>
+      <li>How do you make sure your components stay reusable?</li>
+    </ul>
+  </body>
+</html>
