@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Flashcards</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        cursor: pointer;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .answer {
+        display: none;
+        color: #444;
+      }
+      .question:hover {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>✅ 1. Flashcards</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">1. What is React?</td>
+          <td class="answer">
+            A JavaScript library for building UI with a component-based
+            approach.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">2. What is JSX?</td>
+          <td class="answer">
+            Syntax extension that looks like HTML in JavaScript.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">3. Props vs State?</td>
+          <td class="answer">
+            Props are read-only and passed from parent; state is internal and
+            mutable.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">4. useState</td>
+          <td class="answer">Adds state to a functional component.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">5. useEffect</td>
+          <td class="answer">Handles side effects like data fetching.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">6. When does useEffect run?</td>
+          <td class="answer">After render or when dependencies change.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">7. What is the virtual DOM?</td>
+          <td class="answer">
+            A lightweight copy of the real DOM for performance optimization.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">8. Functional components?</td>
+          <td class="answer">
+            Components written as functions instead of classes.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">9. Controlled components?</td>
+          <td class="answer">Inputs that get their value from state.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">10. Key in React lists?</td>
+          <td class="answer">
+            Unique identifier used to optimize rendering of lists.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">11. Passing data to child?</td>
+          <td class="answer">Use props.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">12. Child to parent?</td>
+          <td class="answer">Call function passed as prop.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">13. Conditional rendering?</td>
+          <td class="answer">
+            Show components based on conditions using if/ternary.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">14. onClick event?</td>
+          <td class="answer">Example: &lt;button onClick={handleClick}&gt;</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">15. Render a list?</td>
+          <td class="answer">Use .map() and key for each item.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">16. React Router?</td>
+          <td class="answer">Used for client-side routing.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">17. Fetching data?</td>
+          <td class="answer">Use fetch in useEffect.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">18. Update state directly?</td>
+          <td class="answer">No. Use setState or state updater function.</td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">19. What is a hook?</td>
+          <td class="answer">
+            Function that lets you use React features in function components.
+          </td>
+        </tr>
+        <tr onclick="toggleAnswer(this)">
+          <td class="question">20. useRef?</td>
+          <td class="answer">
+            Access DOM nodes or persist values across renders.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      function toggleAnswer(row) {
+        const answerCell = row.querySelector(".answer");
+        answerCell.style.display =
+          answerCell.style.display === "table-cell" ? "none" : "table-cell";
+      }
+    </script>
+  </body>
+</html>
