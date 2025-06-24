@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcus Aurelius 3D</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #0a0a0a;
+        font-family: "Georgia", serif;
+        color: #e0e0e0;
+      }
+      #quote {
+        position: absolute;
+        bottom: 5%;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0.9;
+        pointer-events: none;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="quote">
+      "The happiness of your life depends upon the quality of your thoughts."
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+    <script>
+      let scene, camera, renderer, composer, model;
+
+      // Setup
+      scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x000000, 0.03);
+
+      camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100
+      );
+      camera.position.set(0, 1, 5);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      document.body.appendChild(renderer.domElement);
+
+      // Lights
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+      dirLight.position.set(5, 10, 7.5);
+      scene.add(dirLight);
+
+      // Postprocessing
+      const renderScene = new THREE.RenderPass(scene, camera);
+      const bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        0.5,
+        0.4,
+        0.85
+      );
+      composer = new THREE.EffectComposer(renderer);
+      composer.addPass(renderScene);
+      composer.addPass(bloomPass);
+
+      // Floating particles background
+      const starsGeometry = new THREE.BufferGeometry();
+      const starCount = 5000;
+      const positions = [];
+      for (let i = 0; i < starCount; i++) {
+        positions.push((Math.random() - 0.5) * 100);
+        positions.push((Math.random() - 0.5) * 100);
+        positions.push((Math.random() - 0.5) * 100);
+      }
+      starsGeometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(positions, 3)
+      );
+      const starsMaterial = new THREE.PointsMaterial({
+        color: 0x888888,
+        size: 0.2,
+      });
+      const starField = new THREE.Points(starsGeometry, starsMaterial);
+      scene.add(starField);
+
+      // Load Marcus Aurelius 3D model
+      const loader = new THREE.GLTFLoader();
+      loader.load("marcus.glb", function (gltf) {
+        model = gltf.scene;
+        model.scale.set(2, 2, 2);
+        model.position.y = -1;
+        scene.add(model);
+      });
+
+      // Resize
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // Quotes loop
+      const quotes = [
+        `"The happiness of your life depends upon the quality of your thoughts."`,
+        `"You have power over your mind - not outside events. Realize this, and you will find strength."`,
+        `"If it is not right, do not do it. If it is not true, do not say it."`,
+        `"Waste no more time arguing what a good man should be. Be one."`,
+      ];
+      let quoteIndex = 0;
+      const quoteEl = document.getElementById("quote");
+      setInterval(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteEl.textContent = quotes[quoteIndex];
+      }, 7000);
+
+      // Animate
+      function animate() {
+        requestAnimationFrame(animate);
+        if (model) model.rotation.y += 0.003;
+        starField.rotation.y += 0.0005;
+        composer.render();
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
