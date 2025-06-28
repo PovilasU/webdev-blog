@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Junior React.js Developer Interview Practice – Ideal Answers</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      h2 {
+        color: #34495e;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+      }
+      .question {
+        background: #3498db;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+      .answer {
+        background: #ecf0f1;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 5px;
+        white-space: pre-wrap;
+      }
+      code {
+        background: #eee;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      pre {
+        background: #eee;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Junior React.js Developer Interview Practice – Ideal Answers</h1>
+
+    <h2>Introduction</h2>
+    <div class="question">
+      Q: Can you tell me a bit about yourself and your experience with React.js?
+    </div>
+    <div class="answer">
+      My name is Povilas, and I have over 7 years of experience as a full-stack
+      developer, with a focus on React.js and front-end development in recent
+      years. From 2019 to 2023, I worked at Allente in Oslo building and
+      maintaining React.js applications integrated with ASP.NET MVC,
+      collaborating closely with cross-functional teams to deliver key features
+      and optimize performance. Prior to that, I gained full-stack experience at
+      Rolls-Royce and GNB London, developing internal tools and dashboards using
+      JavaScript, PHP, Laravel, Java, and Python. Most recently, until mid-2024,
+      I was a Full-Stack Developer and Team Lead at IT Sprendimai MB, where I
+      led WordPress development—handling backend (PHP) and frontend (JS, CSS),
+      managing the team, conducting code reviews, and building custom themes,
+      plugins, and API integrations to enhance performance and scalability.
+      Additionally, I worked as a .NET Developer at Tribeca, developing internal
+      tools and automation solutions using ASP.NET, Blazor, React.js, and C#,
+      and designing SQL database architectures. My broad experience enables me
+      to build scalable, efficient web applications while contributing both
+      technically and as a team lead.
+    </div>
+
+    <h2>React Fundamentals</h2>
+
+    <div class="question">
+      Q1: Can you explain the difference between functional and class components
+      in React? When would you use one over the other?
+    </div>
+    <div class="answer">
+      Class components are ES6 classes that extend React.Component and use
+      lifecycle methods like <code>componentDidMount</code> and
+      <code>componentDidUpdate</code> to manage state and side effects.
+      Functional components are simpler functions that return JSX. With the
+      introduction of hooks, functional components can now manage state and side
+      effects using hooks like <code>useState</code> and <code>useEffect</code>.
+      Today, functional components are preferred because they are more concise,
+      easier to read, and hooks provide powerful capabilities for managing state
+      and lifecycle events without the verbosity of classes.
+    </div>
+
+    <div class="question">
+      Q2: What does the <code>useEffect</code> hook do, and can you give an
+      example of how and when you'd use it?
+    </div>
+    <div class="answer">
+      The <code>useEffect</code> hook lets you perform side effects in
+      functional components, such as fetching data, setting up subscriptions, or
+      manually changing the DOM. It runs after the render and can be configured
+      to run only once on mount or whenever specific dependencies change by
+      using the dependency array. Example: Fetch data when the component mounts:
+
+      <pre>
+useEffect(() => {
+  fetchData();
+}, []); // empty dependency array means this runs once on mount</pre
+      >
+    </div>
+
+    <div class="question">
+      Q3: What is the difference between <code>useState</code> and
+      <code>useRef</code>, and when would you use <code>useRef</code> instead of
+      <code>useState</code>?
+    </div>
+    <div class="answer">
+      <code>useState</code> is a hook that manages state in functional
+      components and triggers a re-render whenever the state changes.
+      <code>useRef</code>, on the other hand, returns a mutable ref object whose
+      <code>.current</code> property persists across renders but updating it
+      does not trigger a re-render. You use <code>useRef</code> to: - Access or
+      store DOM elements (e.g., focusing an input). - Store mutable values that
+      don’t affect rendering, like timers or previous values. Example:
+
+      <pre>
+const inputRef = useRef(null);
+
+useEffect(() => {
+  inputRef.current.focus();
+}, []);
+
+return &lt;input ref={inputRef} /&gt;;</pre
+      >
+    </div>
+
+    <div class="question">
+      Q4: Say you have a list of items that the user can add to or remove from.
+      How would you manage this list in React? What hooks would you use?
+    </div>
+    <div class="answer">
+      I would use the <code>useState</code> hook to manage the list as an array.
+      To update the list immutably, I would use the spread operator. Example:
+
+      <pre>
+const [items, setItems] = useState([]);
+
+// Add an item
+const addItem = (newItem) =&gt; {
+  setItems(prevItems =&gt; [...prevItems, newItem]);
+};
+
+// Remove an item by id
+const removeItem = (id) =&gt; {
+  setItems(prevItems =&gt; prevItems.filter(item =&gt; item.id !== id));
+};</pre
+      >
+    </div>
+
+    <div class="question">
+      Q4.1: Would you consider using <code>useReducer</code> instead of
+      <code>useState</code> here? Why or why not?
+    </div>
+    <div class="answer">
+      <code>useReducer</code> is useful when state logic is complex, such as
+      when you have multiple related state updates or different types of actions
+      that affect the state. It provides a more predictable state management
+      pattern similar to Redux reducers. For simple lists,
+      <code>useState</code> is sufficient. But if the list logic grows more
+      complex, with many actions (add, remove, update, reset), I would consider
+      <code>useReducer</code> to better organize the state updates. Example
+      reducer:
+
+      <pre>
+const reducer = (state, action) =&gt; {
+  switch (action.type) {
+    case 'add':
+      return [...state, action.payload];
+    case 'remove':
+      return state.filter(item =&gt; item.id !== action.payload.id);
+    default:
+      return state;
+  }
+};
+
+const [items, dispatch] = useReducer(reducer, []);</pre
+      >
+    </div>
+
+    <h2>Behavioral Question</h2>
+
+    <div class="question">
+      Q5: Can you describe a challenge you faced in a React project and how you
+      solved it?
+    </div>
+    <div class="answer">
+      In a previous role at Allente, I was tasked with migrating a Blazor
+      ASP.NET application to React.js. The migration had to be gradual since the
+      React code was injected into ASP.NET <code>.cshtml</code> pages, making it
+      a hybrid app rather than a full React SPA. I carefully embedded React
+      components within the existing views using
+      <code>ReactDOM.render</code> and passed necessary data via model
+      properties or global JavaScript objects. A major challenge was ensuring
+      smooth data flow and maintaining consistent state between the old and new
+      components. I addressed this by writing integration tests, performing
+      manual verifications, and collaborating closely with QA. This approach
+      minimized disruption and allowed a successful incremental migration to
+      React.
+    </div>
+    <div class="question">todo App</div>
+    <h2>Todo App Example Link</h2>
+
+    <a
+      href="https://chatgpt.com/share/685bf6e6-4b90-8007-bd5a-defe5a6c8bb3"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Todo App Example
+    </a>
+    <a
+      href="https://codesandbox.io/p/sandbox/c27r97"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Todo App Example sandbox
+    </a>
+    <div class="answer">
+      <pre>
+        <code>
+        import React, { useState } from 'react';
+
+        function TodoList() {
+        const [task, setTask] = useState('');
+        const [tasks, setTasks] = useState([]);
+
+        const handleAddTask = () => {
+            if (task.trim() === '') return; // avoid empty tasks
+            setTasks([...tasks, task]);
+            setTask('');
+        };
+
+        return (
+            &lt;div&gt;
+            &lt;h2&gt;Todo List&lt;/h2&gt;
+            &lt;input 
+                type="text" 
+                value={task} 
+                onChange={(e) =&gt; setTask(e.target.value)} 
+                placeholder="Enter a task" 
+            /&gt;
+            &lt;button onClick={handleAddTask}&gt;Add&lt;/button&gt;
+
+            &lt;ul&gt;
+                {tasks.map((t, index) =&gt; (
+                &lt;li key={index}&gt;{t}&lt;/li&gt;
+                ))}
+            &lt;/ul&gt;
+            &lt;/div&gt;
+        );
+        }
+
+        export default TodoList;
+        </code>
+        </pre>
+    </div>
+    <h3>todo app link</h3>
+
+    <h2>Wrap-up Tips</h2>
+    <p>
+      Remember to organize your thoughts before answering, use code snippets to
+      clarify technical points, and highlight your problem-solving approach with
+      specific examples. Keep practicing React hooks, state management, and
+      common patterns to build confidence for junior React developer int
+    </p>
+  </body>
+</html>

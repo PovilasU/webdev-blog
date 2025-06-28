@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Flashcards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        vertical-align: top;
+        word-wrap: break-word;
+      }
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 25%;
+      }
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 50%;
+      }
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 25%;
+      }
+      .answer,
+      .feedback {
+        display: none;
+      }
+      .input-container {
+        display: flex;
+        flex-direction: column;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        resize: vertical;
+        padding: 10px;
+        font-size: 16px;
+        font-family: inherit;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+      }
+      .input-container button {
+        padding: 6px 12px;
+        font-size: 14px;
+        width: fit-content;
+      }
+      .feedback.correct {
+        color: green;
+      }
+      .feedback.incorrect {
+        color: red;
+      }
+      .question {
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>✅ Flashcards - Practice Mode</h2>
+    <p>
+      Click on a question to show/hide the correct answer. Write your answer and
+      click "Check".
+    </p>
+    <button id="shuffleBtn" style="margin-bottom: 16px">
+      🔀 Shuffle Questions
+    </button>
+    <table>
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Your Answer</th>
+          <th>Correct Answer</th>
+        </tr>
+      </thead>
+      <tbody id="flashcards"></tbody>
+    </table>
+
+    <script>
+      const flashcards = [
+        {
+          q: "1. What is React?",
+          a: "A JavaScript library for building UI with a component-based approach.",
+        },
+        {
+          q: "2. What is JSX?",
+          a: "Syntax extension that looks like HTML in JavaScript.",
+        },
+        {
+          q: "3. Props vs State?",
+          a: "Props are read-only and passed from parent; state is internal and mutable.",
+        },
+        { q: "4. useState", a: "Adds state to a functional component." },
+        { q: "5. useEffect", a: "Handles side effects like data fetching." },
+        {
+          q: "6. When does useEffect run?",
+          a: "After render or when dependencies change.",
+        },
+        {
+          q: "7. What is the virtual DOM?",
+          a: "A lightweight copy of the real DOM for performance optimization.",
+        },
+        {
+          q: "8. Functional components?",
+          a: "Components written as functions instead of classes.",
+        },
+        {
+          q: "9. Controlled components?",
+          a: "Inputs that get their value from state.",
+        },
+        {
+          q: "10. Key in React lists?",
+          a: "Unique identifier used to optimize rendering of lists.",
+        },
+        { q: "11. Passing data to child?", a: "Use props." },
+        { q: "12. Child to parent?", a: "Call function passed as prop." },
+        {
+          q: "13. Conditional rendering?",
+          a: "Show components based on conditions using if/ternary.",
+        },
+        {
+          q: "14. onClick event?",
+          a: "Example: <`button onClick={handleClick}>",
+        },
+        { q: "15. Render a list?", a: "Use .map() and key for each item." },
+        { q: "16. React Router?", a: "Used for client-side routing." },
+        { q: "17. Fetching data?", a: "Use fetch in useEffect." },
+        {
+          q: "18. Update state directly?",
+          a: "No. Use setState or state updater function.",
+        },
+        {
+          q: "19. What is a hook?",
+          a: "Function that lets you use React features in function components.",
+        },
+        {
+          q: "20. useRef?",
+          a: "Access DOM nodes or persist values across renders.",
+        },
+      ];
+
+      let currentIndex = 0;
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      function renderFlashcards() {
+        const tbody = document.getElementById("flashcards");
+        tbody.innerHTML = "";
+        // Only show up to currentIndex
+        for (let i = 0; i <= currentIndex && i < flashcards.length; i++) {
+          const card = flashcards[i];
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td class="question" onclick="toggleAnswer(${i})">${card.q}</td>
+            <td>
+              <div class="input-container">
+                <textarea id="input-${i}" placeholder="Type your answer here..."></textarea>
+                <button onclick="checkAnswer(${i})">Check</button>
+                <div id="feedback-${i}" class="feedback"></div>
+              </div>
+            </td>
+            <td id="answer-${i}" class="answer">${card.a}</td>
+          `;
+          tbody.appendChild(row);
+        }
+      }
+
+      function toggleAnswer(index) {
+        const answer = document.getElementById(`answer-${index}`);
+        answer.style.display =
+          answer.style.display === "table-cell" ? "none" : "table-cell";
+      }
+
+      function checkAnswer(index) {
+        const input = document
+          .getElementById(`input-${index}`)
+          .value.trim()
+          .toLowerCase();
+        const answerText = document
+          .getElementById(`answer-${index}`)
+          .textContent.trim()
+          .toLowerCase();
+        const feedback = document.getElementById(`feedback-${index}`);
+
+        if (input === answerText) {
+          feedback.textContent = "✅ Correct!";
+          feedback.className = "feedback correct";
+          feedback.style.display = "block";
+          // Show next question if available
+          if (index === currentIndex && currentIndex < flashcards.length - 1) {
+            currentIndex++;
+            setTimeout(renderFlashcards, 500); // Small delay for feedback
+          }
+        } else {
+          feedback.textContent = "❌ Incorrect.";
+          feedback.className = "feedback incorrect";
+          feedback.style.display = "block";
+        }
+      }
+
+      // Expose functions to global scope for inline onclick handlers
+      window.toggleAnswer = toggleAnswer;
+      window.checkAnswer = checkAnswer;
+
+      function resetAndShuffle() {
+        shuffle(flashcards);
+        currentIndex = 0;
+        renderFlashcards();
+      }
+
+      // Shuffle and render on page load
+      resetAndShuffle();
+
+      // Shuffle on button click
+      document
+        .getElementById("shuffleBtn")
+        .addEventListener("click", resetAndShuffle);
+    </script>
+  </body>
+</html>

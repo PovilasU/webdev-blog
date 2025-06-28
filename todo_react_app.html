@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo List</title>
+
+    <!-- React and ReactDOM (for building and rendering the UI) -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- Babel (so the browser can understand JSX) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Root element for React to render into -->
+    <div id="root"></div>
+
+    <!-- Your React code -->
+    <script type="text/babel">
+      // Import useState from React
+      const { useState } = React;
+
+      // Define the TodoList component
+      function TodoList() {
+        const [task, setTask] = useState(""); // One task (input box)
+        const [tasks, setTasks] = useState([]); // List of all tasks
+
+        // Function to add a task
+        const handleAddTask = () => {
+          if (task.trim() === "") return; // Prevent adding empty task
+          setTasks([...tasks, task]); // Add to list
+          setTask(""); // Clear input
+        };
+
+        // UI of the TodoList
+        return (
+          <div>
+            <h2>Todo List</h2>
+
+            <input
+              type="text"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              placeholder="Enter a task"
+            />
+
+            <button onClick={handleAddTask}>Add</button>
+
+            <ul>
+              {tasks.map((t, index) => (
+                <li key={index}>{t}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      // Render the TodoList into the root div
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<TodoList />);
+    </script>
+  </body>
+</html>
