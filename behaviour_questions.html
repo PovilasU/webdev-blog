@@ -273,6 +273,63 @@ const [items, dispatch] = useReducer(reducer, []);</pre
         </pre>
     </div>
     <h3>todo app link</h3>
+    <div class="question">Child to parent?</div>
+    <div class="answer">Call function passed as prop.</div>
+
+    <h2>child to parent Example Link</h2>
+
+    <a
+      href="https://chatgpt.com/share/68616f45-b530-8007-913d-8a63dec65df4"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      child to parent basic Example
+    </a>
+
+    <br />
+    <a
+      href="https://codesandbox.io/p/sandbox/drz3wl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Child To parent Example sandbox
+    </a>
+    <div class="answer">
+      <pre>
+import React, { useState } from "react";
+
+function Child({ sendDataToParent }) {
+  return (
+    &lt;button onClick={() => sendDataToParent("Hello from Child!")}&gt;
+      Click me to send data to parent
+    &lt;/button&gt;
+  );
+}
+
+export default function App() {
+  const [message, setMessage] = useState("");
+
+  // Function to receive data from child
+  function handleDataFromChild(data) {
+    setMessage(data);
+  }
+
+  return (
+    &lt;div className="App"&gt;
+      &lt;h1&gt;Hello CodeSandbox&lt;/h1&gt;
+      &lt;h2&gt;Start editing to see some magic happen!&lt;/h2&gt;
+
+      &lt;Child sendDataToParent={handleDataFromChild} /&gt;
+
+      &lt;p&gt;Message from child: {message}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+  </pre
+      >
+    </div>
+
+    <h3>todo app link</h3>
 
     <h2>Wrap-up Tips</h2>
     <p>

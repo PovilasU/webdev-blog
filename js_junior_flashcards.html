@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Junior JavaScript Developer Interview Flashcards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .flashcard {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        margin: 15px auto;
+        max-width: 700px;
+        padding: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .flashcard:hover {
+        background-color: #eef6ff;
+      }
+      .question {
+        font-weight: bold;
+        font-size: 1.1rem;
+      }
+      .answer {
+        margin-top: 15px;
+        display: none;
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Junior JavaScript Developer Interview Flashcards</h1>
+
+    <div class="flashcard">
+      <div class="question">
+        1. What are the different data types in JavaScript?
+      </div>
+      <div class="answer">
+        Number, String, Boolean, Null, Undefined, Object, Symbol, BigInt.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        2. What is the difference between <code>var</code>, <code>let</code>,
+        and <code>const</code>?
+      </div>
+      <div class="answer">
+        <ul>
+          <li>
+            <code>var</code>: function-scoped, can be redeclared and updated.
+          </li>
+          <li>
+            <code>let</code>: block-scoped, can be updated but not redeclared in
+            the same scope.
+          </li>
+          <li>
+            <code>const</code>: block-scoped, cannot be updated or redeclared.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">3. What is a closure in JavaScript?</div>
+      <div class="answer">
+        A closure is a function that remembers and accesses variables from its
+        outer scope even after that outer function has finished executing.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        4. What are arrow functions, and how are they different from regular
+        functions?
+      </div>
+      <div class="answer">
+        Arrow functions have a shorter syntax and do not have their own
+        <code>this</code>, <code>arguments</code>, or <code>super</code>. They
+        inherit <code>this</code> from their surrounding context.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">5. Explain event bubbling.</div>
+      <div class="answer">
+        Event bubbling is the process where an event starts from the deepest
+        target element and then propagates up to its ancestors in the DOM tree.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">6. How do you create an object in JavaScript?</div>
+      <div class="answer">
+        <ul>
+          <li>Using object literal: <code>{ key: value }</code></li>
+          <li>Using constructor: <code>new Object()</code></li>
+          <li>Using <code>Object.create()</code> method.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        7. What is the difference between <code>==</code> and <code>===</code>?
+      </div>
+      <div class="answer">
+        <ul>
+          <li><code>==</code> compares values with type coercion.</li>
+          <li>
+            <code>===</code> compares values without type coercion (strict
+            equality).
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">8. What is hoisting?</div>
+      <div class="answer">
+        Hoisting is JavaScript's behavior of moving declarations
+        (<code>var</code>, <code>function</code>) to the top of their scope
+        before code execution.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        9. How does the <code>this</code> keyword work?
+      </div>
+      <div class="answer">
+        <code>this</code> refers to the object that is executing the current
+        function. It varies based on how the function is called.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">10. What are promises in JavaScript?</div>
+      <div class="answer">
+        Promises represent the eventual completion (or failure) of an
+        asynchronous operation and its resulting value.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        11. What is the difference between synchronous and asynchronous code?
+      </div>
+      <div class="answer">
+        <ul>
+          <li>
+            Synchronous code runs sequentially, blocking the thread until
+            finished.
+          </li>
+          <li>
+            Asynchronous code runs independently, allowing other code to run
+            while waiting.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">12. What is the DOM?</div>
+      <div class="answer">
+        The Document Object Model (DOM) is a programming interface for HTML and
+        XML documents, representing the page so scripts can change the document
+        structure, style, and content.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">13. How do you handle errors in JavaScript?</div>
+      <div class="answer">
+        Using <code>try...catch</code> blocks, and optionally
+        <code>finally</code> to run code regardless of error.
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        14. What is the difference between <code>null</code> and
+        <code>undefined</code>?
+      </div>
+      <div class="answer">
+        <ul>
+          <li><code>null</code> is an assigned value meaning "no value".</li>
+          <li>
+            <code>undefined</code> means a variable has been declared but not
+            assigned a value.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flashcard">
+      <div class="question">
+        15. What is the purpose of the <code>map()</code> method?
+      </div>
+      <div class="answer">
+        <code>map()</code> creates a new array by applying a function to each
+        element of the original array.
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".flashcard").forEach((card) => {
+        card.addEventListener("click", () => {
+          const answer = card.querySelector(".answer");
+          if (answer.style.display === "block") {
+            answer.style.display = "none";
+          } else {
+            answer.style.display = "block";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
