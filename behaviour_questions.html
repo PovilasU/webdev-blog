@@ -328,8 +328,71 @@ export default function App() {
   </pre
       >
     </div>
+    <h3>UseEffect</h3>
+    <div class="question">useEffect example</div>
+    <div class="answer">to use sideEffects like fetch data</div>
 
-    <h3>todo app link</h3>
+    <h2>useEffect example</h2>
+
+    <a
+      href="https://chatgpt.com/share/6862dbf8-f3d4-8007-b08d-0016282237a2"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      useEffect chatgpt Example
+    </a>
+
+    <br />
+    <a
+      href="https://codesandbox.io/p/sandbox/48hjnl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      UseEffect Example sandbox
+    </a>
+    <div class="answer">
+      <h2>React useEffect Example</h2>
+
+      <pre><code>
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch users when component mounts
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching users:', error);
+        setLoading(false);
+      });
+  }, []); // Empty dependency array = run once on mount
+
+  if (loading) return &lt;p&gt;Loading users...&lt;/p&gt;;
+
+  return (
+    &lt;div style={{ padding: '1rem' }}&gt;
+      &lt;h1&gt;User List&lt;/h1&gt;
+      &lt;ul&gt;
+        {users.map((user) =&gt; (
+          &lt;li key={user.id}&gt;
+            &lt;strong&gt;{user.name}&lt;/strong&gt; — {user.email}
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+  </code></pre>
+    </div>
 
     <h2>Wrap-up Tips</h2>
     <p>
