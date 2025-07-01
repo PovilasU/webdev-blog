@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React + REST API Flashcards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+      .flashcard {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .flashcard:hover {
+        transform: scale(1.02);
+      }
+      .question,
+      .answer {
+        font-size: 1.2em;
+      }
+      .answer {
+        display: none;
+        margin-top: 10px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>React + REST API Flashcards</h1>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">What is a REST API?</div>
+      <div class="answer">
+        REST API is a set of rules that allows client and server to communicate
+        over HTTP using standard methods like GET, POST, PUT, DELETE.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">
+        Which HTTP methods are commonly used in REST APIs?
+      </div>
+      <div class="answer">GET, POST, PUT, PATCH, DELETE</div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">
+        How do you fetch data from a REST API in React?
+      </div>
+      <div class="answer">
+        Use fetch() or libraries like axios inside useEffect to call the API
+        when the component mounts.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">
+        What is the role of useEffect in REST API calls?
+      </div>
+      <div class="answer">
+        useEffect runs code (like API calls) after the component renders, ideal
+        for fetching data when a component mounts.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">What is a 404 status code?</div>
+      <div class="answer">
+        404 means "Not Found" — the resource doesn't exist on the server.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">
+        How do you handle loading and error states in React when calling an API?
+      </div>
+      <div class="answer">
+        Use state variables like isLoading and error to conditionally render UI
+        feedback.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">What is the difference between PUT and PATCH?</div>
+      <div class="answer">
+        PUT replaces the entire resource, PATCH updates only the specified
+        fields.
+      </div>
+    </div>
+
+    <div class="flashcard" onclick="toggleAnswer(this)">
+      <div class="question">What are CORS issues and when do they occur?</div>
+      <div class="answer">
+        CORS issues happen when a frontend app tries to access a backend on a
+        different domain without proper headers.
+      </div>
+    </div>
+
+    <script>
+      function toggleAnswer(card) {
+        const answer = card.querySelector(".answer");
+        answer.style.display =
+          answer.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>
