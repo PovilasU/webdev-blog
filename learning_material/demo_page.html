@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water.css Dark/Light Toggle</title>
+
+    <!-- Theme stylesheet loaded dynamically -->
+    <link id="theme-style" rel="stylesheet" />
+
+    <style>
+      html {
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .theme-toggle:focus {
+        outline: none;
+      }
+
+      .theme-toggle span {
+        display: none;
+      }
+
+      [data-theme="light"] .light-icon,
+      [data-theme="dark"] .dark-icon {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="light-icon">☀️</span>
+      <span class="dark-icon">🌙</span>
+    </button>
+
+    <h1>Hello, World! 🌍</h1>
+    <p>This site supports light/dark mode with a single click!</p>
+
+    <h2>Why Water.css?</h2>
+    <ul>
+      <li>No custom CSS needed</li>
+      <li>Mobile responsive by default</li>
+      <li>Auto theme support</li>
+    </ul>
+
+    <h2>Contact Me</h2>
+    <form>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="your@email.com" />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="4" placeholder="Type something..."></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+
+    <script>
+      const themeLink = document.getElementById("theme-style");
+      const toggleBtn = document.getElementById("themeToggle");
+      const html = document.documentElement;
+
+      const setTheme = (theme) => {
+        html.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+
+        if (theme === "dark") {
+          themeLink.href = "https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css";
+        } else {
+          // Default to light if not dark
+          themeLink.href = "https://cdn.jsdelivr.net/npm/water.css@2/out/light.css";
+        }
+      };
+
+      const toggleTheme = () => {
+        const current = html.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        setTheme(next);
+      };
+
+      // Initialize
+      const saved = localStorage.getItem("theme");
+      if (saved === "light" || saved === "dark") {
+        setTheme(saved);
+      } else {
+        // Auto mode: use system preference
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setTheme(prefersDark ? "dark" : "light");
+      }
+
+      toggleBtn.addEventListener("click", toggleTheme);
+    </script>
+  </body>
+</html>
