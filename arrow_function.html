@@ -116,7 +116,7 @@ new Timer();</code></pre>
     <li>When you need access to the <code>arguments</code> object (not available in arrow functions).</li>
     <li>When using functions as constructors (arrow functions can't be used with <code>new</code>).</li>
   </ul>
-  
+
   <h3>✅ When to use arrow functions:</h3>
   <ul>
     <li>For short, single-expression functions.</li>
@@ -169,9 +169,39 @@ person.greet(); // Hi, I'm Alice</code></pre>
     );
   }
 }</code></pre>
-
   <p>In React class components, using arrow functions for event handlers ensures they have access to the correct <code>this</code> context without needing to bind them in the constructor.</p>
+
+  <div class="note">
+    <strong>Arrow Function Callback Example — Why It Works:</strong>
+  </div>
+  <pre><code>function Timer() {
+  this.seconds = 0;
+  setInterval(() => {
+    this.foo = "aaa";
+    this.seconds++;
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer();</code></pre>
+  <p><strong>Why does this work?</strong> The arrow function inside <code>setInterval</code> captures the <code>this</code> value from the <code>Timer</code> constructor. So <code>this.foo</code> and <code>this.seconds</code> correctly refer to the instance of <code>Timer</code>.</p>
+
+  <div class="note">
+    <strong>If we used a regular function instead:</strong>
+  </div>
+  <pre><code>function Timer() {
+  this.seconds = 0;
+  setInterval(function () {
+    this.foo = "aaa";        // ❌ 'this' is not the Timer instance
+    this.seconds++;          // ❌ likely NaN or error
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer();</code></pre>
+  <p>Here, <code>this</code> refers to the global object (or <code>undefined</code> in strict mode), not the <code>Timer</code> instance. That’s why the arrow function version is preferred for callbacks when using instance properties.</p>
 </section>
+
 
 
   <section>
