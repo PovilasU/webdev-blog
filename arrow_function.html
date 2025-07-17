@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Arrow Functions - Interview Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    pre {
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    .note {
+      background-color: #ffffcc;
+      padding: 10px;
+      border-left: 4px solid #ffcc00;
+      margin-top: 10px;
+    }
+    .quiz {
+      background-color: #e6f7ff;
+      padding: 15px;
+      border-left: 4px solid #1890ff;
+      margin-top: 20px;
+    }
+    .quiz input[type="radio"] {
+      margin-right: 10px;
+    }
+    .quiz label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Arrow Functions - Interview Guide</h1>
+
+  <section>
+    <h2>1. What is an Arrow Function?</h2>
+    <p>An arrow function is a concise syntax for writing functions in JavaScript. It was introduced in ES6 (ECMAScript 2015).</p>
+    <pre><code>// Traditional function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Syntax Variations</h2>
+    <pre><code>// No parameters
+const greet = () => console.log("Hello!");
+
+// One parameter (no need for parentheses)
+const square = x => x * x;
+
+// Multiple lines (need curly braces and return statement)
+const multiply = (a, b) => {
+  const result = a * b;
+  return result;
+};</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Differences from Regular Functions</h2>
+    <ul>
+      <li>No <code>this</code> binding: Arrow functions do not have their own <code>this</code>. They inherit it from the surrounding context.</li>
+      <li>Cannot be used as constructors.</li>
+      <li>No <code>arguments</code> object.</li>
+    </ul>
+    <div class="note">
+      <strong>Example:</strong> Arrow functions are ideal for callbacks to maintain the context of <code>this</code>.
+    </div>
+    <pre><code>function Timer() {
+  this.seconds = 0;
+  setInterval(() => {
+    this.seconds++;
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer();</code></pre>
+  </section>
+
+<section>
+  <h2>4. Common Interview Questions</h2>
+  <ul>
+    <li>When should you <strong>not</strong> use an arrow function?</li>
+    <li>How does <code>this</code> behave in an arrow function compared to a regular function?</li>
+    <li>Can you use arrow functions as methods in objects or in React components?</li>
+  </ul>
+
+  <h3>🚫 When <strong>not</strong> to use arrow functions:</h3>
+  <ul>
+    <li>When you need to bind a specific <code>this</code> context (e.g., object methods).</li>
+    <li>When creating object methods that depend on the object’s own properties.</li>
+    <li>When you need access to the <code>arguments</code> object (not available in arrow functions).</li>
+    <li>When using functions as constructors (arrow functions can't be used with <code>new</code>).</li>
+  </ul>
+  
+  <h3>✅ When to use arrow functions:</h3>
+  <ul>
+    <li>For short, single-expression functions.</li>
+    <li>In array methods like <code>map</code>, <code>filter</code>, and <code>reduce</code>.</li>
+    <li>For inline event handlers in React (if not performance critical).</li>
+    <li>In callbacks where you want to preserve the outer <code>this</code>.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Example (Bad usage as method):</strong>
+  </div>
+  <pre><code>// Arrow function as a method (not recommended)
+const person = {
+  name: "Alice",
+  greet: () => {
+    console.log("Hi, I'm " + this.name); // 'this' refers to window/global, not person
+  }
+};
+
+person.greet(); // Hi, I'm undefined</code></pre>
+
+  <div class="note">
+    <strong>Example (Correct usage with regular function):</strong>
+  </div>
+  <pre><code>const person = {
+  name: "Alice",
+  greet() {
+    console.log("Hi, I'm " + this.name);
+  }
+};
+
+person.greet(); // Hi, I'm Alice</code></pre>
+
+  <div class="note">
+    <strong>React Example: Preserving <code>this</code> in class components</strong>
+  </div>
+  <pre><code>class Counter extends React.Component {
+  state = { count: 0 };
+
+  // Arrow function preserves 'this'
+  handleClick = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Count: {this.state.count}
+      </button>
+    );
+  }
+}</code></pre>
+
+  <p>In React class components, using arrow functions for event handlers ensures they have access to the correct <code>this</code> context without needing to bind them in the constructor.</p>
+</section>
+
+
+  <section>
+    <h2>5. Practice Question</h2>
+    <p>Convert the following function to an arrow function:</p>
+    <pre><code>function isEven(num) {
+  return num % 2 === 0;
+}</code></pre>
+    <p><strong>Answer:</strong></p>
+    <pre><code>const isEven = num => num % 2 === 0;</code></pre>
+  </section>
+
+  <section>
+    <h2>6. Quiz Time!</h2>
+    <div class="quiz">
+      <h3>Q1: Which of the following statements is <strong>true</strong> about arrow functions?</h3>
+      <label><input type="radio" name="q1"> Arrow functions have their own <code>this</code>.</label>
+      <label><input type="radio" name="q1"> Arrow functions are hoisted like regular functions.</label>
+      <label><input type="radio" name="q1"> Arrow functions cannot be used as constructors. ✅</label>
+      <div class="answer">Correct! Arrow functions cannot be used as constructors.</div>
+    </div>
+
+    <div class="quiz">
+      <h3>Q2: Convert the following function to an arrow function:</h3>
+      <pre><code>function greet(name) {
+  return "Hello, " + name;
+}</code></pre>
+      <label><input type="radio" name="q2"> const greet = name => { return "Hello, " + name; }; ✅</label>
+      <label><input type="radio" name="q2"> const greet = (name) => "Hello, " + name + "!";</label>
+      <label><input type="radio" name="q2"> const greet = => "Hello, name";</label>
+      <div class="answer">Correct! The first option is a correct arrow function conversion.</div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal correct answers on selection
+    document.querySelectorAll('.quiz').forEach(quiz => {
+      const radios = quiz.querySelectorAll('input[type="radio"]');
+      const answer = quiz.querySelector('.answer');
+      radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          answer.style.display = 'block';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
